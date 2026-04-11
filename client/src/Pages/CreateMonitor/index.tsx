@@ -785,35 +785,53 @@ const CreateMonitorPage = () => {
 							return (
 								<Stack spacing={theme.spacing(LAYOUT.MD)}>
 									{policies.map((policy: any, idx: number) => (
-										<Stack key={idx} direction="row" spacing={theme.spacing(LAYOUT.MD)} alignItems="center">
+										<Stack
+											key={idx}
+											direction="row"
+											spacing={theme.spacing(LAYOUT.MD)}
+											alignItems="center"
+										>
 											<TextField
 												type="number"
 												value={policy.delayMinutes}
-												onChange={e => {
+												onChange={(e) => {
 													const val = Number(e.target.value);
-													setPolicies(policies.map((p: any, i: number) => i === idx ? { ...p, delayMinutes: val } : p));
+													setPolicies(
+														policies.map((p: any, i: number) =>
+															i === idx ? { ...p, delayMinutes: val } : p
+														)
+													);
 												}}
 												fieldLabel={t("Escalate after (minutes)")}
 												sx={{ minWidth: 180 }}
 											/>
 											<Select
 												value={policy.channelId || ""}
-												onChange={e => {
-													setPolicies(policies.map((p: any, i: number) => i === idx ? { ...p, channelId: e.target.value } : p));
+												onChange={(e) => {
+													setPolicies(
+														policies.map((p: any, i: number) =>
+															i === idx ? { ...p, channelId: e.target.value } : p
+														)
+													);
 												}}
 												fieldLabel={t("Notification Channels")}
 												sx={{ minWidth: 220 }}
 											>
-												<MenuItem value="">
-													{t("Select channel")}
-												</MenuItem>
+												<MenuItem value="">{t("Select channel")}</MenuItem>
 												{notificationOptions.map((n) => (
-													<MenuItem key={n.id} value={n.id}>{n.name}</MenuItem>
+													<MenuItem
+														key={n.id}
+														value={n.id}
+													>
+														{n.name}
+													</MenuItem>
 												))}
 											</Select>
 											<IconButton
 												size="small"
-												onClick={() => setPolicies(policies.filter((_: any, i: number) => i !== idx))}
+												onClick={() =>
+													setPolicies(policies.filter((_: any, i: number) => i !== idx))
+												}
 												aria-label="Remove escalation step"
 											>
 												<Trash2 size={16} />
@@ -822,7 +840,9 @@ const CreateMonitorPage = () => {
 									))}
 									<Button
 										variant="outlined"
-										onClick={() => setPolicies([...policies, { delayMinutes: 10, channelId: "" }])}
+										onClick={() =>
+											setPolicies([...policies, { delayMinutes: 10, channelId: "" }])
+										}
 										sx={{ alignSelf: "flex-start" }}
 									>
 										{t("Add Escalation Step")}

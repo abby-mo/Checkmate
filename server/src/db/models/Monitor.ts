@@ -200,8 +200,8 @@ const checkSnapshotSchema = new Schema<CheckSnapshotDocument>(
 
 const escalationPolicySchema = new Schema(
 	{
-		 delayMinutes: { type: Number, required: true },
-		 channelId: { type: Schema.Types.ObjectId, ref: "Notification", required: true },
+		delayMinutes: { type: Number, required: true },
+		channelId: { type: Schema.Types.ObjectId, ref: "Notification", required: true },
 	},
 	{ _id: false }
 );
@@ -359,14 +359,14 @@ const MonitorSchema = new Schema<MonitorDocument>(
 			type: Number,
 			default: 300000,
 		},
-		       recentChecks: {
-			       type: [checkSnapshotSchema],
-			       default: [],
-		       },
-		       escalationPolicies: {
-			       type: [escalationPolicySchema],
-			       default: [],
-		       },
+		recentChecks: {
+			type: [checkSnapshotSchema],
+			default: [],
+		},
+		escalationPolicies: {
+			type: [escalationPolicySchema],
+			default: [],
+		},
 	},
 	{
 		timestamps: true,
